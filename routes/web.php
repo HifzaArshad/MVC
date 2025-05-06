@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\SchoolController;
 ;
 
 Route::get('/', function () {
@@ -33,3 +34,15 @@ Route::get('/contact', function () {
 
  Route::get('/show-student-form', [TaskController::class, 'showStudentForm']);
  Route::get('/save-student-form', [TaskController::class, 'saveStudentForm']);
+
+
+ Route::get('/school-location', [SchoolController::class, 'schoolForm']);
+ Route::get('/save-school-form', [SchoolController::class, 'saveSchool']);
+
+//  fetch data
+ Route::get('/list', [SchoolController::class, 'list']);
+
+//  Edit data
+Route::get('/edit-school/{id}', [SchoolController::class, 'edit']);
+Route::put('/update-school/{id}', [SchoolController::class, 'update']);
+Route::get('/delete-school/{id}', [SchoolController::class, 'delete']);
