@@ -2,12 +2,11 @@
     <div style="margin-bottom: 20px;">
         <h4 style="margin: 0; padding-bottom: 10px;">
             Edit & Update Student
-            <a href="{{ url('list') }}" style="float: right; background: red; color: white; padding: 6px 12px; text-decoration: none;">BACK</a>
+            <a href="{{ url('school.list') }}" style="float: right; background: red; color: white; padding: 6px 12px; text-decoration: none;">BACK</a>
         </h4>
     </div>
 
-    <form action="{{ url('update-school/'. $find->id) }}" method="POST">
-        
+    <form action="{{ route('school.update', $find->id) }}" method="POST"> 
         @csrf 
         @method('PUT')
 

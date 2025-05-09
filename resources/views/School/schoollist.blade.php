@@ -1,11 +1,4 @@
 <div>
-	<!-- <h1>Form</h1>
-	<form action="save-school-form" method="get">
-	School:<input type="text" name="school"><br><br>
-    Address:<input type="text" name="address"><br><br>
-	<button type="submit">Submit</button>
-	</form> -->
-
 
     <h2 style="text-align:center;">School List</h2>
     
@@ -25,12 +18,12 @@
                 <td style="border: 1px solid #000; padding: 8px;">{{ $school->school }}</td>
                  <td style="border: 1px solid #000; padding: 8px;">{{ $school->address }}</td>
                  <td style="border: 1px solid #000; padding: 8px;">
-                    <a href="{{ url('edit-school/'. $school->id) }}">Edit</a> 
-                    <a href="{{ url('delete-school/'. $school->id) }}" style="margin-left: 10px;">Delete</a>
+                    <a href="{{ route('school.edit', $school->id) }}">Edit</a>
+                    <a href="{{ route('school.delete', $school->id) }}" style="margin-left: 10px;">Delete</a>
                 </td>
             </tr>
         @endforeach
     </tbody>
 </table>
-
+<a href="{{ route('school.form') }}" style="display: block; width: fit-content; margin: 0 auto; background: blue; color: white; padding: 6px 12px; text-decoration: none;">Add School</a>
 </div>

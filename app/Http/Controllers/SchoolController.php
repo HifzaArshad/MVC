@@ -3,64 +3,61 @@
 namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-// use App\Models\Task;
-// use App\Models\Student;
 use App\Models\School;
 
 
 class SchoolController extends Controller
 {
+
+// function (schoolForm) simply loads the form view 
 public function schoolForm()
 {
-    return view('Task.schooladdress');
-
+return view('School.schoolform');
 }   
 
+// Handle form input and save school data to the database
 public function saveSchool(Request $request)
 {
-// print_r($request->all());
 $sch = new School;
 $sch->school = $request->school;
 $sch->address = $request->address;
 $sch->save();
-
-return 'data saved';
+return redirect('school.list');
 }
 
 
-// fetch data
-public function list()
+// Fetch all school records from the database and pass them to the 'schoollist' view
+public function listSchool()
 {
    $fetch  = School::all();
-   return View ('Task.schooladdress', ['groupedschool' => $fetch]);
+   return View ('School.schoollist', ['groupedschool' => $fetch]);
 }   
 
 
-// update data
-public function edit($id)
+// Retrieve a specific school record by ID and pass it to the edit view
+public function editSchool($id)
 {
-    $find  = School::find($id);
-   return View ('Task.edit',compact('find'));
-   
+$find  = School::find($id);
+return View ('School.schooledit',compact('find'));
 }   
 
-public function update(Request $request, $id )
+//  Update the specified school record in the database.
+public function updateSchool(Request $request, $id )
 {
-    $upd  = School::find($id);
-    $upd->school = $request->input('school');
-    $upd->address = $request->input('address');
-    $upd->update();
-    return redirect('list');
-
+$upd  = School::find($id);
+$upd->school = $request->input('school');
+$upd->address = $request->input('address');
+$upd->update();
+return redirect()->route('school.list');
 }   
 
-// delete data
+
+//  Delete the specified school record from the database.
 public function delete($id)
 {
-   $del =  School::find($id);
-   $del->delete();
-
-   return redirect('list');
+$del =  School::find($id);
+$del->delete();
+return redirect()->route('school.list');
 }  
 
 }
