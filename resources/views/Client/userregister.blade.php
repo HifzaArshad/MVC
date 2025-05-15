@@ -1,13 +1,13 @@
 
 
-<h1>User Login Form</h1>
-<form action="{{ route('login.save') }}" method="POST">
+<h1>User Registration Form</h1>
+<form action="{{ route('register.save') }}" method="POST">
     <!-- CSRF token (Laravel-specific) -->
     @csrf
+    Name:<input type="text" id="name" name="name" ><br><br>
     Email:<input type="email" id="email" name="email"><br><br>
     Password:<input type="password" id="password" name="password"><br><br>
 
-    <button type="submit">Login</button>
-     <button><a href="{{route('register.show')}}">Signup?</a></button>
-    
+    <button type="submit">Add User</button>
+
 </form>

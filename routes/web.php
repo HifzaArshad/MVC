@@ -58,12 +58,15 @@ Route::get('/show-student/{id}', [GroupController::class, 'showstudent'])->name(
 Route::post('/save-student', [GroupController::class, 'savestudent'])->name('studentclass.save');
 
 // client Routes 
+Route::get('/show-register', [ClientController::class, 'showUserRegister'])->name('register.show');
+Route::post('/save-register', [ClientController::class, 'saveUserRegister'])->name('register.save');
 Route::get('/show-login', [ClientController::class, 'showUserLogin'])->name('login.show');
-Route::post('/save-login', [ClientController::class, 'saveUserLogin'])->name('login.save');
-
-Route::post('/handle-login', [ClientController::class, 'handleLogin'])->name('login.handle');
-
-Route::get('/account-user', [ClientController::class, 'showAccount'])->name('user.account');
+Route::post('/save-login', [ClientController::class, 'saveUserlogin'])->name('login.save');
+Route::get('/account', [ClientController::class, 'showAccount'])->name('account.show');
+Route::get('/logout', [ClientController::class, 'logout'])->name('logout');
 
 
+function p($data)
+{
+}
 
