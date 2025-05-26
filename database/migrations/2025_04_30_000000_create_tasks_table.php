@@ -7,14 +7,18 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
-    {
-        Schema::create('tasks', function (Blueprint $table) {
-            $table->id();
-            $table->string('task', 255);
-            $table->timestamps();
-        });
-    }
+ public function up(): void
+{
+    Schema::create('tasks', function (Blueprint $table) {
+        $table->id();
+        $table->unsignedBigInteger('user_id'); // Add user_id column
+        $table->string('task', 255);
+        $table->timestamps();
+
+        // Add foreign key constraint to users table
+        $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+    });
+}
     /**
      * Reverse the migrations.
      */

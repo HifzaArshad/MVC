@@ -6,6 +6,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\TodoController;
+use  App\Http\Middleware\Age;
 
 // Home and Basic Pages
 Route::get('/', function () {
@@ -27,8 +29,8 @@ Route::get('/contact', function () {
     return view('page.contact');
 });
 
-// Task Routes via TaskController
-Route::get('/show-task-form', [TaskController::class, 'showTaskForm']);
+// Task Routes via TaskController and Route Midlleware
+Route::get('/show-task-form', [TaskController::class, 'showTaskForm'])->middleware(Age::class);
 Route::get('/save-task-form', [TaskController::class, 'saveTaskForm']);
 
 // Student Form Routes via  StudentController
@@ -64,6 +66,17 @@ Route::get('/show-login', [ClientController::class, 'showUserLogin'])->name('log
 Route::post('/save-login', [ClientController::class, 'saveUserlogin'])->name('login.save');
 Route::get('/account', [ClientController::class, 'showAccount'])->name('account.show');
 Route::get('/logout', [ClientController::class, 'logout'])->name('logout');
+
+
+
+
+// Todo Routers
+Route::get('/create-task', [TodoController::class, 'showTaskForm'])->name('task.create');
+Route::post('/save-todo-task', [TodoController::class, 'saveTaskForm'])->name('task.save');
+Route::get('/todo-list', [TodoController::class, 'showTodoList'])->name('todo.list');
+Route::get('/edit-task/{id}', [TodoController::class, 'editTask'])->name('task.edit');
+Route::put('/update-task/{id}', [TodoController::class, 'updateTask'])->name('task.update');
+Route::get('/delete-task/{id}', [TodoController::class, 'deleteTask'])->name('task.delete');
 
 
 function p($data)

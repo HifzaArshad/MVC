@@ -1,7 +1,5 @@
-
-
-<h1>User Registration Form</h1>
-<form action="{{ route('register.save') }}" method="POST">
+<h1>Todo Registration Form</h1>
+<form action="{{ route('todo.register.save') }}" method="POST">
     <!-- CSRF token (Laravel-specific) -->
     @csrf
     Name:<input type="text" id="name" name="name" ><br><br>
@@ -9,5 +7,5 @@
     Password:<input type="password" id="password" name="password"><br><br>
 
     <button type="submit">Add User</button>
-<button><a href="{{route('login.show')}}">Login</a></button>
+  <button><a href="{{route('todo.login')}}">Login</a></button>
 </form>

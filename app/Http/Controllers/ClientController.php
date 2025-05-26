@@ -51,7 +51,7 @@ public function saveUserLogin(Request $request){
 $credentials = ['email' => $request->email, 'password' => $request->password];
 if(Auth::attempt($credentials)) 
 {
-return redirect()->route('account.show');
+return redirect()->route('task.create');
 }
 else
 {
@@ -65,13 +65,16 @@ public function showAccount()
 {
 if(Auth::check())
 {
-  return view('client.account');
+return view('task.viewtask');
 }
+
+
 else
 {
-  return redirect()->route('login.show');  
+return redirect()->route('login.show');  
 }
 }
+
 
 // (6) Log Out
 public function logout()
